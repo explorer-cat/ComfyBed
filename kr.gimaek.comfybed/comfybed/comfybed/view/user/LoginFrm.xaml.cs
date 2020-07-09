@@ -19,7 +19,12 @@ namespace comfybed.view.user
 
         private void BtnLogin_Clicked(object sender, EventArgs e)
         {
+            Application.Current.MainPage = new MainFrm();
+        }
 
+        private void BtnNewRegister_Clicked(object sender, EventArgs e)
+        {
+            Application.Current.MainPage = new UserJoinFrm();
         }
     }
 }
