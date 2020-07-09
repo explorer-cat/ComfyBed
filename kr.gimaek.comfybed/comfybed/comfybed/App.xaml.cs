@@ -16,7 +16,7 @@ namespace comfybed
             UI = new common.User_Info();
             DM = new common.DataMod();
 
-            MainPage = new view.MainFrm();
+            MainPage = new LoginFrm();
         }
 
 

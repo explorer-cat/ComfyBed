@@ -16,5 +16,10 @@ namespace comfybed.view.user
         {
             InitializeComponent();
         }
+
+        private void BtnLogin_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }

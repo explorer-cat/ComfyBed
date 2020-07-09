@@ -6,10 +6,10 @@
              mc:Ignorable="d"
              x:Class="comfybed.view.user.LoginFrm">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Margin="20,35,20,25">
+            <Entry x:Name="ID" Placeholder="이메일"></Entry>
+            <Entry x:Name="PW" Placeholder="비밀번호"></Entry>
+            <Button x:Name="Login" Text="로그인1" Clicked="BtnLogin_Clicked" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
