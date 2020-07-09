@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="comfybed.view.user.UserJoinFrm">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions= "Center" VerticalOptions="Start">
+            <Label Text="이메일은 인증에 사용됩니다." TextDecorations="Underline"  />
+            <Entry x:Name="txtTo" Placeholder="이메일"></Entry>
+            <Entry IsPassword="true" x:Name="txtPw" Placeholder="비밀번호" MaxLength="10" ></Entry>
+            <Entry IsPassword="true" x:Name="txtPwCheck" Placeholder="비밀번호확인" MaxLength="10" ></Entry>
+            <!--     <Entry x:Name="txtSubject" Placeholder="Subject"></Entry>
+            <Editor x:Name="txtBody" HeightRequest="50" ></Editor> -->
+
+            <Button x:Name="btnSend" Text="인증보내기" Clicked="btnSend_Clicked" />
+            <Label x:Name="EmailTime" Text="30초안에 인증하세요"></Label>
+            <Entry x:Name="CheckEmailCode" Placeholder="인증코드"></Entry>
+            <Button x:Name="btnCheckEmail" Text="인증확인" Clicked="btnEmailCheck_Clicked" />
+            <Button x:Name="register" Text="회원가입" Clicked="BtnRegister_Clicked" />
+            <Button x:Name="pass" Text="pass" Clicked="Btnpass_Clicked" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
