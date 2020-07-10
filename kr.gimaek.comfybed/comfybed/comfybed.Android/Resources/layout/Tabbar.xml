@@ -6,6 +6,12 @@
     android:layout_height="wrap_content"
     android:background="?attr/colorPrimary"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-    app:tabIndicatorColor="@android:color/white"
+    app:tabTextColor="@android:color/darker_gray"
+    app:tabIndicatorColor="@android:color/holo_blue_dark"
+    app:tabIndicatorHeight="4dp"
+    app:tabSelectedTextColor="@android:color/holo_blue_dark"
+
+ 
+    app:tabPadding="10dp"
     app:tabGravity="fill"
     app:tabMode="fixed" />

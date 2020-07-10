@@ -23,8 +23,6 @@ namespace comfybed.view.user
         }
 
 
-
-
         private void btnSend_Clicked(object sender, EventArgs e)
         {
             //이메일 정규화 검증
@@ -53,7 +51,7 @@ namespace comfybed.view.user
                 {
 
                     SendMail.Send(txtTo.Text);
-                    EmailTime.Text = "이메일이 전송되었습니다.";
+                    EmailTime.Text = "이메일이 전송되었습니다."+SendMail.getBase36();
                 }
                 catch (Exception ex)
                 {
@@ -150,7 +148,7 @@ namespace comfybed.view.user
             }
             else
             {
-                DisplayAlert("성공", "이메일 인증이 완료되었습니다..", "성공");
+                DisplayAlert("성공", "이메일 인증이 완료되었습니다.."+ SendMail.getBase36(), "성공");
                 (sender as Button).IsEnabled = false; //인증완료 인증버튼 비활성화
                 btnSend.IsEnabled = false; //인증이 완료될경우 인증 메일 보내기 버튼 비활성화
             }

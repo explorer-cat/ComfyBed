@@ -11,6 +11,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="WindowManagerFlags\**" />
+    <EmbeddedResource Remove="WindowManagerFlags\**" />
+    <None Remove="WindowManagerFlags\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Xamarin.Forms" Version="4.7.0.1080" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />

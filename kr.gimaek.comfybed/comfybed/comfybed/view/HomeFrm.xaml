@@ -6,10 +6,16 @@
              mc:Ignorable="d"
              x:Class="comfybed.view.HomeFrm">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView>
+            <StackLayout>
+                <ListView x:Name="listView">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Label Text="dddBinding Email_" />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

@@ -60,7 +60,5 @@ namespace comfybed.tools.etc
         {
             return ToBase36;
         }
-
-
     }
 }

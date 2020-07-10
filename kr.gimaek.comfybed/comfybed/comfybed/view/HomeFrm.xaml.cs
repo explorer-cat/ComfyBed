@@ -16,7 +16,7 @@ namespace comfybed.view
         public HomeFrm()
         {
             InitializeComponent();
-            Debug.WriteLine(App.DM.Open("select * from User_Info ").ToString());
+            App.DM.Open("select * from User_Info ");
 
         }
     }
