@@ -7,7 +7,7 @@
              x:Class="comfybed.view.user.LoginFrm">
     <ContentPage.Content>
         <StackLayout Margin="20,35,20,25">
-            <Entry x:Name="IDa" Placeholder="이메일1"></Entry>
+            <Entry x:Name="IDa" Placeholder="이메일"></Entry>
             <Entry x:Name="PWb" Placeholder="비밀번호"></Entry>
             <Button x:Name="Login" Text="로그인" Clicked="BtnLogin_Clicked" />
             <Button x:Name="Register" Text="회원가입" Clicked="BtnNewRegister_Clicked" />

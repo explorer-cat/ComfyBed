@@ -12,34 +12,33 @@ namespace comfybed.common
 {
     public class DataMod
     {
-        const string baseURL = "https://localhost:44325/api/Open/";
+        const string baseURL = "http://211.105.113.166:50002/api/OpenBED/";
 
         public DataMod()
         {
 
-            
-
         }
 
-        public async Task<string> Open(string Q)
+        public async Task<JObject> Open(string Q)
         {
-            Uri uri = new Uri(string.Format($"http://211.105.113.166:50002/api/OpenBED/{Q}", string.Empty));
+            Uri uri = new Uri(string.Format(baseURL + Q, string.Empty));
             JObject jObject = new JObject();
 
             using (WebClient webclient = new WebClient())
             {
+
                 try
                 {
-                    var result = await webclient.DownloadDataTaskAsync(uri);
-                    string S = Encoding.UTF8.GetString(result);
+                    var response = await webclient.DownloadDataTaskAsync(uri);
+                    string S = Encoding.UTF8.GetString(response);
                     jObject = Newtonsoft.Json.JsonConvert.DeserializeObject<JObject>(S);
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine("----------------------" + ex.ToString());
+                    Debug.WriteLine(ex.ToString());
                 }
             }
-            return jObject.ToString();
+            return jObject;
         }
 
     }
