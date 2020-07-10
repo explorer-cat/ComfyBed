@@ -11,6 +11,7 @@ namespace comfybed.view.user
         public MyInfoFrm()
         {
             InitializeComponent();
+            App.DM.Open("select * from User_Info ");
         }
     }
 }

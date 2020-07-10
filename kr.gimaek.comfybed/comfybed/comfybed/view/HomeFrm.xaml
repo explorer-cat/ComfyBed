@@ -4,18 +4,39 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="comfybed.view.HomeFrm">
+             x:Class="frontdoor.views.HomeFrm">
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout>
-                <ListView x:Name="listView">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Label Text="dddBinding Email_" />
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackLayout>
-        </ScrollView>
+        <StackLayout Orientation="Vertical">
+            <ListView x:Name="lvData" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="30">
+                                <Frame CornerRadius="10" Margin="0,0,0,0"  Padding="0" IsClippedToBounds="True" WidthRequest="280">
+                                    <StackLayout >
+
+                                        <Image Source="{Binding Image_Url}" HorizontalOptions="Center" VerticalOptions="Center" />
+                                    </StackLayout>
+                                </Frame>
+                                <Frame CornerRadius="0" Margin="0,-20,0,0"  Padding="0" IsClippedToBounds="True" WidthRequest="250">
+                                    <StackLayout >
+                                        <Label Text="{Binding  Shop_Name}"/>
+                                        <Label Text="{Binding  Shop_Address}"/>
+                                        <Label Text="{Binding  Shop_CallNum}"/>
+                                        <Label Text="{Binding place}"/>
+                                        <Label Text="{Binding Rentroom_minprice}"/>
+                                        <Label Text="{Binding Sleeproom_minprice}"/>
+                                    </StackLayout>
+
+                                </Frame>
+                            </StackLayout>
+
+                        </ViewCell>
+                        
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+
     </ContentPage.Content>
 </ContentPage>

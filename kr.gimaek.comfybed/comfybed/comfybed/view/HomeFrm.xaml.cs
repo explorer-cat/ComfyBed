@@ -1,23 +1,28 @@
-﻿using System;
+﻿using comfybed;
+using comfybed.common;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace comfybed.view
+namespace frontdoor.views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HomeFrm : ContentPage
     {
+        List<Shop_Info> dsShop_Info = new List<Shop_Info>();
+
         public HomeFrm()
         {
             InitializeComponent();
-            App.DM.Open("select * from User_Info ");
+            JArray j = App.DM.Open("select * from Shop_Info ");
+            dsShop_Info = JsonConvert.DeserializeObject<List<Shop_Info>>(j.ToString());
+           lvData.ItemsSource = dsShop_Info;
+
 
         }
+
     }
 }
