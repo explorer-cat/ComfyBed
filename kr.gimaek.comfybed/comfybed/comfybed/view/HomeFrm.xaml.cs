@@ -2,12 +2,13 @@
 using comfybed.common;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace frontdoor.views
+namespace comfybed.views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HomeFrm : ContentPage
@@ -22,7 +23,9 @@ namespace frontdoor.views
            lvData.ItemsSource = dsShop_Info;
 
 
+
         }
+        public event EventHandler Refreshing;
 
     }
 }

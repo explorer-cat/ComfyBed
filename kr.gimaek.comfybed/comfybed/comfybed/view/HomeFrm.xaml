@@ -4,39 +4,63 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="frontdoor.views.HomeFrm">
+             x:Class="comfybed.views.HomeFrm">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
-            <ListView x:Name="lvData" HasUnevenRows="True">
+            <ListView x:Name="lvData" HasUnevenRows="True" IsPullToRefreshEnabled="True" RefreshCommand="{Binding Refreshing}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Padding="30">
-                                <Frame CornerRadius="10" Margin="0,0,0,0"  Padding="0" IsClippedToBounds="True" WidthRequest="280">
-                                    <StackLayout >
-
-                                        <Image Source="{Binding Image_Url}" HorizontalOptions="Center" VerticalOptions="Center" />
+                            <StackLayout Padding="20">
+                                <Frame CornerRadius="10" BackgroundColor="#0A0A2A" Margin="0,0,0,0"  Padding="0" IsClippedToBounds="True" WidthRequest="680">
+                                    <StackLayout>
+                                        <RelativeLayout>
+                                            <Image Source="{Binding Image_Url}" HorizontalOptions="Center" VerticalOptions="Start" HeightRequest="250"/>
+                                            <Frame  IsVisible="{Binding Event_Check}" CornerRadius="15" Padding="0" Margin="260,5,0,0 ">
+                                                <Label Text="{Binding Sale_Event}" Padding="5" FontAttributes="Bold" FontSize="11" TextColor="White" BackgroundColor="Red" />
+                                            </Frame>
+                                        </RelativeLayout>
+                                        <StackLayout Padding="10" >
+                                            <Label Text="{Binding  Shop_Name}" TextColor="White" FontSize="20" FontAttributes="Bold"  FontFamily="Batang"  />
+                                            <RelativeLayout>
+                                                <Image Source="{Binding Grade_Star}" Margin ="150,-5,0,0" HeightRequest="20" HorizontalOptions="Center"/>
+                                                <Label Text="{Binding place}" Margin="0,-5,0,0" TextColor="DarkGray" FontSize="13" />
+                                                <Label Text="{Binding  grade}" TextColor="White" FontSize="19" Margin="175,-5,0,0" HorizontalOptions="End" HorizontalTextAlignment="Center"   FontAttributes="Bold" />
+                                                <Label Text=" / 5.0" TextColor ="White"  Margin="200,-1,0,0"/>
+                                                <Label Text="(" Margin="240,0,0,0" TextColor ="White"  />
+                                                <Label Text="{Binding ReView}" Margin="245,-1,0,0" TextColor ="White" />
+                                                <Label Text=")" Margin="253,0,0,0" TextColor ="White"  />
+                                            </RelativeLayout>
+                                            <AbsoluteLayout>
+                                                <RelativeLayout Padding="30">
+                                                    <Label Text="대실" Margin="190,3,0,0" TextColor="Gray"  />
+                                                    <Frame CornerRadius="15" Padding="0" Margin="220,5,0,0">
+                                                        <Label Text="  예약  " FontAttributes="Bold" FontSize="11" TextColor="White" BackgroundColor="Red" />
+                                                    </Frame>
+                                                    <Label Text="{Binding Rentroom_minprice}" FontAttributes = "Bold" FontSize ="18"  Margin="270,0,0,0"  TextColor="White"  />
+                                                    <Label Text="숙박"  Margin="190,30,0,0" TextColor="Gray"/>
+                                                    <Frame CornerRadius="15" Padding="0" Margin="220,33,0,0">
+                                                        <Label Text="  예약  " FontAttributes="Bold" FontSize="11" TextColor="White" BackgroundColor="Red" />
+                                                    </Frame>
+                                                    <Label Text="{Binding Sleeproom_minprice}" FontAttributes="Bold" FontSize="18" Margin="270,28,0,0"  TextColor="White" />
+                                                </RelativeLayout>
+                                                <RelativeLayout>
+                                                    <Label Text="대실" TextColor="Gray" Margin="0,70,0,0" FontSize="12"/>
+                                                    <Label Text="4시간 이용" TextColor="White" Margin="30,70,0,0" FontSize="12"/>
+                                                </RelativeLayout>
+                                                <RelativeLayout>
+                                                    <Label Text="숙박" TextColor="Gray" Margin="100,70,0,0" FontSize="12"/>
+                                                    <Label Text="21시부터 입실" TextColor="White" Margin="130,70,0,0" FontSize="12"/>
+                                                </RelativeLayout>
+                                            </AbsoluteLayout>
+                                        </StackLayout>
                                     </StackLayout>
-                                </Frame>
-                                <Frame CornerRadius="0" Margin="0,-20,0,0"  Padding="0" IsClippedToBounds="True" WidthRequest="250">
-                                    <StackLayout >
-                                        <Label Text="{Binding  Shop_Name}"/>
-                                        <Label Text="{Binding  Shop_Address}"/>
-                                        <Label Text="{Binding  Shop_CallNum}"/>
-                                        <Label Text="{Binding place}"/>
-                                        <Label Text="{Binding Rentroom_minprice}"/>
-                                        <Label Text="{Binding Sleeproom_minprice}"/>
-                                    </StackLayout>
-
                                 </Frame>
                             </StackLayout>
-
                         </ViewCell>
-                        
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </StackLayout>
-
     </ContentPage.Content>
 </ContentPage>
