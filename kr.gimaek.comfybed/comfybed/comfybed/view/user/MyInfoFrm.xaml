@@ -5,28 +5,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="comfybed.view.user.MyInfoFrm">
-    <Frame 
-           CornerRadius="5"
-           WidthRequest="310" 
-           HeightRequest="230"
-           Margin="30,0,50,10"
-           HorizontalOptions="Center"
-           BackgroundColor="White"
-           VerticalOptions="Center">
-        <StackLayout>
-        <ScrollView>
-            <ListView x:Name="FirstNotice">
-                <ListView.ItemsSource >
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>공지사항</x:String>
-                        <x:String>공지사항2</x:String>
-                        <x:String>공지사항3</x:String>
-                        <x:String>공지사항4</x:String>
-                        <x:String>공지사항5</x:String>
-                    </x:Array>
-                </ListView.ItemsSource>
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <ListView HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="1111"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
-        </ScrollView>
-    </StackLayout>
-    </Frame>
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>

@@ -14,6 +14,7 @@ namespace comfybed.views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HomeFrm : ContentPage
     {
+        ObservableCollection<Shop_Info> dsShop_Infos = new ObservableCollection<Shop_Info>();
         List<Shop_Info> dsShop_Info = new List<Shop_Info>();
         public HomeFrm()
         {
@@ -21,10 +22,6 @@ namespace comfybed.views
             JArray j = App.DM.Open("select * from Shop_Info ");
             dsShop_Info = JsonConvert.DeserializeObject<List<Shop_Info>>(j.ToString());
             lvData.ItemsSource = dsShop_Info;
-
- 
-
-
             lvData.RefreshCommand = new Command(() =>
             {
                 RefreshData();
@@ -35,10 +32,9 @@ namespace comfybed.views
 
         public void RefreshData()
         {
-            lvData.ItemsSource = null;
+            JArray j = App.DM.Open("select * from Shop_Info ");
+            dsShop_Info = JsonConvert.DeserializeObject<List<Shop_Info>>(j.ToString());
             lvData.ItemsSource = dsShop_Info;
-          //  ObservableCollection<Shop_Info> dsShop_Infos = new ObservableCollection<Shop_Info>();
-         //  lvData.ItemsSource = dsShop_Infos;
         }
     }
 }
