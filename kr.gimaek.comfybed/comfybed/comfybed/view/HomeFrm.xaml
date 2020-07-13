@@ -10,17 +10,21 @@
         <StackLayout Orientation="Vertical">
             <ListView x:Name="lvData"
                       HasUnevenRows="True"
-                      IsPullToRefreshEnabled="True">
+                      IsPullToRefreshEnabled="True"
+                      ItemSelected="lvData_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout BackgroundColor="#0A0A2A"
                                             Margin="5,5,5,5">
                                 <StackLayout Margin="7,0,7,7">
-                                    <Image Source="{Binding Image_Url}"
+                                    <RelativeLayout>
+                                        <Image Source="{Binding Image_Url}"
                                             HorizontalOptions="Center"
                                             VerticalOptions="Start"
                                             HeightRequest="250"/>
+                                        <Label IsVisible="{Binding Event_Check}"  Text="{Binding Sale_Event}" BackgroundColor="Red" TextColor="White"/>
+                                    </RelativeLayout>
                                 </StackLayout>
                                 <StackLayout Orientation="Vertical"
                                              Margin="7,0,7,7">
@@ -29,19 +33,20 @@
                                             FontSize="20"
                                             FontAttributes="Bold"
                                             FontFamily="Batang"  />
-                                    <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
-                                        <Image Source="{Binding Grade_Star}"
-                                            HeightRequest="20"/>
-                                        <Label Text="{Binding  grade, StringFormat='{0:F2}/5.0'}"
-                                                TextColor="White"/>
-                                        <Label Text="{Binding  ReView, StringFormat='({0:D})'}"
-                                                TextColor="White"/>
-                                    </StackLayout>
-                                    <StackLayout>
-                                        <Label Text="{Binding place}"
-                                                Margin="0,-5,0,0"
+                                    <Label Text="{Binding place}"
                                                 TextColor="DarkGray"
-                                                FontSize="Small"/>
+                                                FontSize="Small"
+                                               HorizontalOptions="Start"/>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" IsVisible="{Binding GR_isVisible}">
+                                        <Image Source="{Binding Grade_Star}"
+                                            HeightRequest="20"
+                                              />
+                                        <Label Text="{Binding  Grade, StringFormat='{0:F2} / 5.0'}"
+                                                TextColor="White"
+                                                 />
+                                        <Label Text="{Binding  Review, StringFormat='(후기 {0:D} 개)'}"
+                                                TextColor="White"  
+                                               />
                                     </StackLayout>
                                     <StackLayout Orientation="Horizontal"
                                                     HorizontalOptions="EndAndExpand">
@@ -49,7 +54,8 @@
                                                 TextColor="Gray" VerticalTextAlignment="Center"/>
                                         <Label Text="예약" BackgroundColor="Red"
                                                 Margin="2"
-                                                TextColor="Gray" VerticalTextAlignment="Center"/>
+                                               Padding="1"
+                                                TextColor="White" VerticalTextAlignment="Center"/>
                                         <Label Text="{Binding Rentroom_minprice}"
                                                 FontSize="Medium"
                                                 FontAttributes="Bold"
@@ -66,7 +72,9 @@
                                                 TextColor="Gray" VerticalTextAlignment="Center"/>
                                         <Label Text="예약" BackgroundColor="Red"
                                                 Margin="2"
-                                                TextColor="Gray" VerticalTextAlignment="Center"/>
+                                                TextColor="White"
+                                               VerticalTextAlignment="Center"
+                                               Padding="1"/>
                                         <Label Text="{Binding Sleeproom_minprice}"
                                                 FontSize="Medium"
                                                 FontAttributes="Bold"
@@ -87,7 +95,7 @@
                                                     TextColor="White"
                                                     FontSize="Small"/>
                                         </StackLayout>
-                                                
+
                                         <StackLayout Margin="5,0,0,0"
                                                         Orientation="Horizontal">
                                             <Label Text="숙박"
@@ -97,15 +105,15 @@
                                                     TextColor="White"
                                                     FontSize="Small"/>
                                         </StackLayout>
-                                                
+
                                     </StackLayout>
                                 </StackLayout>
                             </StackLayout>
-                            
+
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-                
+
             </ListView>
         </StackLayout>
     </ContentPage.Content>

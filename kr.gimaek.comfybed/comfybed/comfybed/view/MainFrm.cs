@@ -34,7 +34,7 @@ namespace comfybed.view
             var wishList = new NavigationPage(new MyInfoFrm()  {  Title = "찜"});
             var frMyInfo = new NavigationPage(new MyInfoFrm() { Title = "내정보" });
 
-
+          
             frHome.Title = "홈";
             MyPlace.Title = "내주변";
             Place.Title = "지도";

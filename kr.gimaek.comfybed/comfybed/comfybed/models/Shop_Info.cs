@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace comfybed.common
+namespace comfybed.models
 {
     class Shop_Info
     {
@@ -28,7 +28,27 @@ namespace comfybed.common
 
 
         public bool Event_Check { get; set;  } //이미지에 이벤트 스티커 유무 0false 1true
-        public String Sale_Event {  get; set; } //최대할인가격 얼마? EX) 최대 5000원 할인
+        public string Sale_Event {  get; set; } //최대할인가격 얼마? EX) 최대 5000원 할인
+
+
+        public string TodayDate
+        {
+            get
+            {
+                return DateTime.Now.ToString("MM.dd");
+            }
+        }
+        
+        public string minDate
+        {
+            get
+            {
+                DateTime today = DateTime.Now;
+                //최대 예약가능은 90일까지 가능
+                DateTime maxday = today.AddDays(90);
+                return maxday.ToString("MM.dd");
+            }
+        }
 
 
 

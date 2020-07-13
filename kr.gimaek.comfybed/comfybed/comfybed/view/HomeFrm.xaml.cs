@@ -1,5 +1,8 @@
 ﻿using comfybed;
 using comfybed.common;
+using comfybed.models;
+using comfybed.view;
+using comfybed.view.Shop;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -34,6 +37,17 @@ namespace comfybed.views
             JArray j = App.DM.Open("select * from Shop_Info ");
             dsShop_Info = JsonConvert.DeserializeObject<List<Shop_Info>>(j.ToString());
             lvData.ItemsSource = dsShop_Info;
+        }
+
+        private async void lvData_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+
+            if (e.SelectedItem == null) return;
+            var shop_info = e.SelectedItem as Shop_Info;
+
+            var nextPage = new Shop_DetailFrm();
+            nextPage.BindingContext = shop_info;
+            await Navigation.PushAsync(nextPage);
         }
     }
 }

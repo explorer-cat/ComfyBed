@@ -1,5 +1,82 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="comfybed.view.Shop.Shop_DetailFrm">
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="comfybed.view.Shop.Shop_DetailFrm">
     <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Orientation="Vertical" BackgroundColor="LightGray">
+                <StackLayout BackgroundColor="White">
+                    <StackLayout>
+                        <RelativeLayout>
+                            <Image Source="{Binding Image_Url}"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Start"
+                                            HeightRequest="280"/>
+                        </RelativeLayout>
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical"
+                                             Margin="7,7,7,7"
+                                            Padding="10">
+                        <Label Text="{Binding  Shop_Name}"
+                                            TextColor="Black"
+                                            FontSize="30"
+                                            FontAttributes="Bold"
+                                            FontFamily="Batang"  />
+                        <Label Text="{Binding place}"
+                                                TextColor="DarkGray"
+                                                FontSize="Small"
+                                               HorizontalOptions="Start"/>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Start" IsVisible="{Binding GR_isVisible}">
+                            <Image Source="{Binding Grade_Star}"
+                                              HeightRequest="20" />
+                            <Label Text="{Binding  Grade, StringFormat='{0:F2}'}"
+                                               TextColor="Black" />
+                            <Label Text="{Binding  Review, StringFormat='(리뷰 {0:D} 개)'}"
+                                                TextColor="MidnightBlue"  />
+                        </StackLayout>
+                        <StackLayout>
+                            <Label Text="최저가보장,예약취소가능" TextColor="Gray" Margin="0,10,10,0" />
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+                <Frame CornerRadius="10" Margin="7,7,7,7" BackgroundColor="#FE2E64">
+                    <Label Text="선착순 5,000원 즉시 할인! (쿠폰 받기)" FontSize="15"/>
+                </Frame>
+                <StackLayout  BackgroundColor="White">
+                    <StackLayout Orientation="Horizontal" 
+                                        HorizontalOptions="Center">
+
+                        <DatePicker x:Name="startDatePicker"
+                                           Format="M"
+                                           DateSelected="OnDateSelected" />
+                        <Label Text="   -  " Margin="0,15,0,0"/>
+                        <DatePicker x:Name="endDatePicker"
+                                            MinimumDate="{Binding Source={x:Reference startDatePicker}, Path=Date}"
+                                            Format="M"
+                                            DateSelected="OnDateSelected" />
+                        <Label Text="여행 날짜를 선택해주세요" 
+                                  x:Name="resultLabel"
+                                   Margin="0,13,0,0"
+                                   FontAttributes="Bold"
+                                   HorizontalTextAlignment="End"
+                                   TextColor="LightGreen"/>
+                    </StackLayout>
+                    <StackLayout BackgroundColor="Transparent" x:Name="lvData" >
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Orientation = "Horizontal" HeightRequest="150" WidthRequest="80">
+
+                                    <Button Text="{Binding Shop_Name}" />
+
+                                </StackLayout>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
