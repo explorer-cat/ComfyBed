@@ -4,59 +4,104 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="comfybed.views.HomeFrm">
+             x:Class="comfybed.views.HomeFrm"
+             >
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
-            <ListView  x:Name="lvData" HasUnevenRows="True" IsPullToRefreshEnabled="True">
-            <ListView.ItemTemplate>
+            <ListView x:Name="lvData"
+                      HasUnevenRows="True"
+                      IsPullToRefreshEnabled="True">
+                <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Padding="20">
-                                <Frame CornerRadius="10" BackgroundColor="#0A0A2A" Margin="0,0,0,0"  Padding="0" IsClippedToBounds="True" WidthRequest="680">
-                                    <StackLayout>
-                                        <RelativeLayout>
-                                            <Image Source="{Binding Image_Url}" HorizontalOptions="Center" VerticalOptions="Start" HeightRequest="250"/>
-                                            <Frame  IsVisible="{Binding Event_Check}" CornerRadius="15" Padding="0" Margin="260,5,0,0 ">
-                                                <Label Text="{Binding Sale_Event}" Padding="5" FontAttributes="Bold" FontSize="11" TextColor="White" BackgroundColor="Red" />
-                                            </Frame>
-                                        </RelativeLayout>
-                                        <StackLayout Padding="10" >
-                                            <Label Text="{Binding  Shop_Name}" TextColor="White" FontSize="20" FontAttributes="Bold"  FontFamily="Batang"  />
-                                            <RelativeLayout>
-                                                <Image Source="{Binding Grade_Star}" Margin ="150,-5,0,0" HeightRequest="20" HorizontalOptions="Center"/>
-                                                <Label Text="{Binding place}" Margin="0,-5,0,0" TextColor="DarkGray" FontSize="13" />
-                                                <Label Text="{Binding  grade}" TextColor="White" FontSize="19" Margin="175,-5,0,0" HorizontalOptions="End" HorizontalTextAlignment="Center"   FontAttributes="Bold" />
-                                                <Label Text=" / 5.0" TextColor ="White"  Margin="200,-1,0,0"/>
-                                                <Label Text="(" Margin="240,0,0,0" TextColor ="White"  />
-                                                <Label Text="{Binding ReView}" Margin="245,-1,0,0" TextColor ="White" />
-                                                <Label Text=")" Margin="253,0,0,0" TextColor ="White"  />
-                                            </RelativeLayout>
-                                            <AbsoluteLayout>
-                                                <RelativeLayout Padding="30">
-                                                    <Label Text="대실" Margin="190,3,0,0" TextColor="Gray"  />
-                                                    <Frame CornerRadius="15" Padding="0" Margin="220,5,0,0">
-                                                        <Label Text="  예약  " FontAttributes="Bold" FontSize="11" TextColor="White" BackgroundColor="Red" />
-                                                    </Frame>
-                                                    <Label Text="{Binding Rentroom_minprice}" FontAttributes = "Bold" FontSize ="18"  Margin="270,0,0,0"  TextColor="White"  />
-                                                    <Label Text="숙박"  Margin="190,30,0,0" TextColor="Gray"/>
-                                                    <Frame CornerRadius="15" Padding="0" Margin="220,33,0,0">
-                                                        <Label Text="  예약  " FontAttributes="Bold" FontSize="11" TextColor="White" BackgroundColor="Red" />
-                                                    </Frame>
-                                                    <Label Text="{Binding Sleeproom_minprice}" FontAttributes="Bold" FontSize="18" Margin="270,28,0,0"  TextColor="White" />
-                                                </RelativeLayout>
-                                                <RelativeLayout>
-                                                    <Label Text="대실" TextColor="Gray" Margin="0,70,0,0" FontSize="12"/>
-                                                    <Label Text="4시간 이용" TextColor="White" Margin="30,70,0,0" FontSize="12"/>
-                                                </RelativeLayout>
-                                                <RelativeLayout>
-                                                    <Label Text="숙박" TextColor="Gray" Margin="100,70,0,0" FontSize="12"/>
-                                                    <Label Text="21시부터 입실" TextColor="White" Margin="130,70,0,0" FontSize="12"/>
-                                                </RelativeLayout>
-                                            </AbsoluteLayout>
-                                        </StackLayout>
+                            <StackLayout BackgroundColor="#0A0A2A"
+                                            Margin="5,5,5,5">
+                                <StackLayout Margin="7,0,7,7">
+                                    <Image Source="{Binding Image_Url}"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Start"
+                                            HeightRequest="250"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Vertical"
+                                             Margin="7,0,7,7">
+                                    <Label Text="{Binding  Shop_Name}"
+                                            TextColor="White"
+                                            FontSize="20"
+                                            FontAttributes="Bold"
+                                            FontFamily="Batang"  />
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                                        <Image Source="{Binding Grade_Star}"
+                                            HeightRequest="20"/>
+                                        <Label Text="{Binding  grade, StringFormat='{0:F2}/5.0'}"
+                                                TextColor="White"/>
+                                        <Label Text="{Binding  ReView, StringFormat='({0:D})'}"
+                                                TextColor="White"/>
                                     </StackLayout>
-                                </Frame>
+                                    <StackLayout>
+                                        <Label Text="{Binding place}"
+                                                Margin="0,-5,0,0"
+                                                TextColor="DarkGray"
+                                                FontSize="Small"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal"
+                                                    HorizontalOptions="EndAndExpand">
+                                        <Label Text="대실"
+                                                TextColor="Gray" VerticalTextAlignment="Center"/>
+                                        <Label Text="예약" BackgroundColor="Red"
+                                                Margin="2"
+                                                TextColor="Gray" VerticalTextAlignment="Center"/>
+                                        <Label Text="{Binding Rentroom_minprice}"
+                                                FontSize="Medium"
+                                                FontAttributes="Bold"
+                                                VerticalTextAlignment="Center"
+                                                TextColor="White"
+                                                />
+                                        <Label Text="원" FontSize="Small"
+                                                TextColor="White"
+                                                VerticalTextAlignment="Center"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal"
+                                                    HorizontalOptions="EndAndExpand">
+                                        <Label Text="숙박"
+                                                TextColor="Gray" VerticalTextAlignment="Center"/>
+                                        <Label Text="예약" BackgroundColor="Red"
+                                                Margin="2"
+                                                TextColor="Gray" VerticalTextAlignment="Center"/>
+                                        <Label Text="{Binding Sleeproom_minprice}"
+                                                FontSize="Medium"
+                                                FontAttributes="Bold"
+                                                VerticalTextAlignment="Center"
+                                                TextColor="White"
+                                                />
+                                        <Label Text="원" FontSize="Small"
+                                                TextColor="White"
+                                                VerticalTextAlignment="Center"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="대실"
+                                                    TextColor="Gray"
+                                                    FontAttributes="Bold"
+                                                    FontSize="Small"/>
+                                            <Label Text="4시간 이용"
+                                                    TextColor="White"
+                                                    FontSize="Small"/>
+                                        </StackLayout>
+                                                
+                                        <StackLayout Margin="5,0,0,0"
+                                                        Orientation="Horizontal">
+                                            <Label Text="숙박"
+                                                    TextColor="Gray"
+                                                    FontSize="Small"/>
+                                            <Label Text="21시부터 입실"
+                                                    TextColor="White"
+                                                    FontSize="Small"/>
+                                        </StackLayout>
+                                                
+                                    </StackLayout>
+                                </StackLayout>
                             </StackLayout>
+                            
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

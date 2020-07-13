@@ -19,9 +19,8 @@ namespace comfybed.views
         public HomeFrm()
         {
             InitializeComponent();
-            JArray j = App.DM.Open("select * from Shop_Info ");
-            dsShop_Info = JsonConvert.DeserializeObject<List<Shop_Info>>(j.ToString());
-            lvData.ItemsSource = dsShop_Info;
+            RefreshData();
+
             lvData.RefreshCommand = new Command(() =>
             {
                 RefreshData();

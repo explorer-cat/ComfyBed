@@ -29,6 +29,7 @@
 
   <ItemGroup>
     <Folder Include="models\" />
+    <Folder Include="view\Shop\" />
   </ItemGroup>
 
   <ItemGroup>
