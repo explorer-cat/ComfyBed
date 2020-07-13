@@ -16,13 +16,8 @@ namespace comfybed
             InitializeComponent();
             UI = new User_Info();
             DM = new DataMod();
-
-           
-
             MainPage = new MainFrm();
         }
-
-
 
         protected override void OnStart()
         {

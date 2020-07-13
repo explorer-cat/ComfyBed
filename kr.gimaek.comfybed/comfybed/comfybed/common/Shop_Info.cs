@@ -55,6 +55,9 @@ namespace comfybed.common
             }
         }
 
+
+        public System.Windows.Input.ICommand RefreshCommand { get; set; }
+
         public string Grade_Star
         {
             get

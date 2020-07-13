@@ -7,8 +7,8 @@
              x:Class="comfybed.views.HomeFrm">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
-            <ListView x:Name="lvData" HasUnevenRows="True" IsPullToRefreshEnabled="True" RefreshCommand="{Binding Refreshing}">
-                <ListView.ItemTemplate>
+            <ListView  x:Name="lvData" HasUnevenRows="True" IsPullToRefreshEnabled="True">
+            <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Padding="20">
@@ -60,6 +60,7 @@
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
+                
             </ListView>
         </StackLayout>
     </ContentPage.Content>

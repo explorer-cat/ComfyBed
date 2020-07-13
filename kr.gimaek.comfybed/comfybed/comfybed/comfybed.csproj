@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <Compile Remove="tools\etc\Class1.cs" />
+    <Compile Remove="view\Employee.cs" />
   </ItemGroup>
 
   <ItemGroup>
