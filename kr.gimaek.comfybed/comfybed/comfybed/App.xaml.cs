@@ -1,6 +1,8 @@
 ﻿using comfybed.common;
 using comfybed.view;
+using comfybed.view.Shop;
 using comfybed.view.user;
+using comfybed.views;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

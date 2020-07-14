@@ -34,7 +34,7 @@ namespace comfybed.views
 
         public void RefreshData()
         {
-            JArray j = App.DM.Open("select * from Shop_Info ");
+            JArray j = App.DM.Open("select * from Shop_Info left join shop_room on Shop_Info.id = shop_room.shop_id;");
             dsShop_Info = JsonConvert.DeserializeObject<List<Shop_Info>>(j.ToString());
             lvData.ItemsSource = dsShop_Info;
         }

@@ -25,7 +25,12 @@ namespace comfybed.models
         public double Grade { get; set; } //평점
         public int Review{ get;   set;   } //리뷰
 
-
+        public string room_img { 
+            get
+            {
+                return "";
+            }
+          }
 
         public bool Event_Check { get; set;  } //이미지에 이벤트 스티커 유무 0false 1true
         public string Sale_Event {  get; set; } //최대할인가격 얼마? EX) 최대 5000원 할인

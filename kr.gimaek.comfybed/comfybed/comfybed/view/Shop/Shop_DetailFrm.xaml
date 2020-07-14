@@ -6,7 +6,8 @@
              mc:Ignorable="d"
              x:Class="comfybed.view.Shop.Shop_DetailFrm">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical" BackgroundColor="LightGray">
+        <ScrollView>
+            <StackLayout Orientation="Vertical" BackgroundColor="LightGray">
             <StackLayout BackgroundColor="White">
                 <StackLayout>
                     <RelativeLayout>
@@ -79,10 +80,12 @@
                 </StackLayout>
                 <StackLayout BackgroundColor="White" Padding="5">
                     <StackLayout Orientation="Horizontal">
-                        <StackLayout>
-                            <Image Source="{Binding Image_Url}" WidthRequest="200" HeightRequest="150"/>
-                        </StackLayout>
-                        <StackLayout  Orientation="Vertical">
+                            <StackLayout>
+
+                                <Image Source="{Binding room_img}" WidthRequest="200" HeightRequest="150"/>
+                                    <Image Source="{Binding room_img}" WidthRequest="200" HeightRequest="150"/>
+                            </StackLayout>
+                            <StackLayout  Orientation="Vertical">
                             <Label Text="스탠다드룸 (넷플릭스,PC 2대 완비,싱글룸)" 
                                    TextColor="Black"
                                    FontSize="Medium" 
@@ -95,5 +98,6 @@
                 </StackLayout>
             </StackLayout>
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
