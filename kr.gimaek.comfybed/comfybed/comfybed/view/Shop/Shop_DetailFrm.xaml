@@ -6,98 +6,150 @@
              mc:Ignorable="d"
              x:Class="comfybed.view.Shop.Shop_DetailFrm">
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout Orientation="Vertical" BackgroundColor="LightGray">
-            <StackLayout BackgroundColor="White">
-                <StackLayout>
-                    <RelativeLayout>
-                        <Image Source="{Binding Image_Url}"
+        <StackLayout Orientation="Vertical">
+            <ListView x:Name="lvData1"
+                      HasUnevenRows="True"
+                      IsPullToRefreshEnabled="True"
+                      BackgroundColor="LightGray">
+                <ListView.Header>
+                    <StackLayout BackgroundColor="White">
+                        <StackLayout>
+                            <RelativeLayout>
+                                <Image Source="{Binding Image_Url}"
                                             HorizontalOptions="Center"
                                             VerticalOptions="Start"
                                             HeightRequest="280"/>
-                    </RelativeLayout>
-                </StackLayout>
-                <StackLayout Orientation="Vertical"
+                            </RelativeLayout>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical"
                                              Margin="7,7,7,7"
                                             Padding="10">
-                    <Label Text="{Binding  Shop_Name}"
+                            <Label Text="{Binding  Shop_Name}"
                                             TextColor="Black"
                                             FontSize="30"
                                             FontAttributes="Bold"
                                             FontFamily="Batang"  />
-                    <Label Text="{Binding place}"
+                            <Label Text="{Binding place}"
                                                 TextColor="DarkGray"
                                                 FontSize="Small"
                                                HorizontalOptions="Start"/>
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="Start" IsVisible="{Binding GR_isVisible}">
-                        <Image Source="{Binding Grade_Star}"
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Start" IsVisible="{Binding GR_isVisible}">
+                                <Image Source="{Binding Grade_Star}"
                                               HeightRequest="20" />
-                        <!-- <Label Text="{Binding  Grade, StringFormat='{0:F2}'}"
+                               <Label Text="{Binding  Grade, StringFormat='{0:F2}'}"
                                                TextColor="Black" />
-                            <Label Text="{Binding  Review, StringFormat='(리뷰 {0:D} 개)'}"
-                            TextColor="MidnightBlue"  />-->
-                    </StackLayout>
-                    <StackLayout>
-                        <Label Text="최저가보장,예약취소가능" TextColor="Gray" Margin="0,10,10,0" />
-                    </StackLayout>
-                </StackLayout>
-            </StackLayout>
-            <Frame CornerRadius="10" Margin="7,7,7,7" BackgroundColor="#FE2E64">
-                <Label Text="선착순 5,000원 즉시 할인! (쿠폰 받기)" FontSize="15"/>
-            </Frame>
-            <StackLayout Margin="0,1,0,0"
+                                <Button Text="리뷰 50개"
+                                        VerticalOptions="CenterAndExpand"
+                                          HorizontalOptions="Center"
+                                         Clicked="OnButtonClicked" 
+                                        BackgroundColor="white"/>
+
+                            </StackLayout>
+                            <Frame CornerRadius="10" Margin="7,7,7,7" BackgroundColor="#FE2E64">
+                                <Label Text="선착순 5,000원 즉시 할인! (쿠폰 받기)" FontSize="15"/>
+                            </Frame>
+                            <StackLayout Margin="0,1,0,0"
                                     BackgroundColor="White"
                                     Orientation="Vertical"
                                     Padding="10">
-                <Label Text="■ 숙소 이벤트1"
+                                <Label Text="■ 숙소 이벤트1"
                                 HorizontalOptions="Start"
                                 FontSize="Medium"
                                 FontAttributes="Bold"/>
-                <Label Text="정성 스런 리뷰 작성 시 무료초대권 증정 (자세히 보기)"
+                                <Label Text="정성 스런 리뷰 작성 시 무료초대권 증정 (자세히 보기)"
                                HorizontalOptions="Start"
                                 FontSize="Small"
                            TextColor="Black"/>
 
-            </StackLayout>
-            <StackLayout  BackgroundColor="White" >
-                <StackLayout Orientation="Horizontal" 
+                            </StackLayout>
+                            <StackLayout>
+                                <Label Text="최저가보장,예약취소가능" TextColor="Gray" Margin="0,10,10,0" />
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" 
                                         HorizontalOptions="Center">
 
-                    <DatePicker x:Name="startDatePicker"
+                                <DatePicker x:Name="startDatePicker"
                                            Format="M"
                                            DateSelected="OnDateSelected" />
-                    <Label Text="   -  " Margin="0,15,0,0"/>
-                    <DatePicker x:Name="endDatePicker"
+                                <Label Text="   -  " Margin="0,15,0,0"/>
+                                <DatePicker x:Name="endDatePicker"
                                             MinimumDate="{Binding Source={x:Reference startDatePicker}, Path=Date}"
                                             Format="M"
                                             DateSelected="OnDateSelected" />
-                    <Label Text="여행 날짜를 선택해주세요" 
+                                <Label Text="여행 날짜를 선택해주세요" 
                                   x:Name="resultLabel"
                                    Margin="0,13,0,0"
                                    FontAttributes="Bold"
                                    HorizontalTextAlignment="End"
                                    TextColor="LightGreen"/>
-                </StackLayout>
-                <StackLayout BackgroundColor="White" Padding="5">
-                    <StackLayout Orientation="Horizontal">
-                            <StackLayout>
-
-                                <Image Source="{Binding room_img}" WidthRequest="200" HeightRequest="150"/>
-                                    <Image Source="{Binding room_img}" WidthRequest="200" HeightRequest="150"/>
-                            </StackLayout>
-                            <StackLayout  Orientation="Vertical">
-                            <Label Text="스탠다드룸 (넷플릭스,PC 2대 완비,싱글룸)" 
-                                   TextColor="Black"
-                                   FontSize="Medium" 
-                                   FontAttributes="Bold"/>
-                            <StackLayout Orientation="Vertical"  HorizontalOptions="EndAndExpand">
-                                <Label Text="대실" VerticalOptions="Center"/>
                             </StackLayout>
                         </StackLayout>
                     </StackLayout>
-                </StackLayout>
-            </StackLayout>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical" BackgroundColor="LightGray">
+                                <StackLayout  BackgroundColor="White" >
+                                    <StackLayout BackgroundColor="White">
+                                        <StackLayout Orientation="Horizontal">
+                                            <StackLayout>
+                                                <Image Source="{Binding room_img}" WidthRequest="150" HeightRequest="100"/>
+                                            </StackLayout>
+                                            <StackLayout  Orientation="Vertical">
+                                                <Label Text="{Binding room_name}"
+                                                TextColor="Black"
+                                                 FontSize="Medium" 
+                                                 FontAttributes="Bold"/>
+                                                <StackLayout  Orientation ="Vertical" VerticalOptions="StartAndExpand">
+                                                    <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Margin="0,5,0,0">
+                                                        <Label Text="대실"/>
+                                                        <Label Text="예약"
+                                                                BackgroundColor="Red"
+                                                                TextColor="White"/>
+                                                        <Label Text="30,000원" TextColor="Black"/>
+                                                    </StackLayout>
+                                                    <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                                        <Label Text="숙박"/>
+                                                        <Label Text="예약"
+                                                                BackgroundColor="Red"
+                                                                TextColor="White"/>
+                                                        <Label Text="30,000원" TextColor="Black"/>
+                                                    </StackLayout>
+                                                </StackLayout>
+                                            </StackLayout>
+                                            
+                                        </StackLayout>
+                                        <StackLayout Orientation="Vertical"
+                                                                Padding="10"
+                                                                Margin="10,10,10,10"
+                                                                VerticalOptions="Start" 
+                                                                BackgroundColor="Bisque">
+                                            <Label Text="대실:1 4시간 이용  숙박입실 14시부터~18시까지 가능/ 에어컨 TV 완비되어 있습니다."/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+
+                        </ViewCell>
+                    </DataTemplate>
+                    
+                </ListView.ItemTemplate>
+                <ListView.Footer>
+                    <StackLayout BackgroundColor="LightGray" >
+                        <StackLayout Margin="0,5,0,0"
+                                                Padding="10"
+                                                 BackgroundColor="White" >
+                            <Label Text=" ''고1객 여러분들께 언제나 새롭고 편안한 경험을 드리는 아트호텔은 63개의 전 객실이 모두 다른 인테리어로 꾸며진 부띠크 앤 유니크 호텔입니다. '' "/>
+                        </StackLayout>
+                        <StackLayout Margin="0,1,0,0"
+                                                Padding="10"
+                                                 BackgroundColor="White" >
+                        <Label Text=" ''고1객 여러분들께 언제나 새롭고 편안한 경험을 드리는 아트호텔은 63개의 전 객실이 모두 다른 인테리어로 꾸며진 부띠크 앤 유니크 호텔입니다. '' "/>
+                    </StackLayout>
+                  </StackLayout>
+                </ListView.Footer>
+            </ListView>
         </StackLayout>
-        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

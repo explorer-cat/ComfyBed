@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="comfybed.view.Shop.ReviewFrm">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <ListView x:Name="lvData1"
+                      HasUnevenRows="True"
+                      IsPullToRefreshEnabled="True"
+                      BackgroundColor="LightGray">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical" BackgroundColor="LightGray">
+                                <StackLayout  BackgroundColor="White" >
+                                    <StackLayout BackgroundColor="White">
+                                        <StackLayout Orientation="Horizontal">
+                                            <StackLayout>
+                                                <Label Text ="{Binding User_Name, StringFormat='{0:C0} 님의 리뷰'}"
+                                                       FontAttributes="Bold"
+                                                       FontSize="Medium"
+                                                       TextColor="black"/>
+                                                <Label Text="{Binding grade}" TextColor="Red"/>
+                                                <Label Text ="{Binding review}" TextColor="black"/>
+                                                <Label Text ="{Binding date}"  TextColor="black"/>
+                                                <Label Text="{Binding grade_avg}" TextColor="Black"/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+
+                        </ViewCell>
+                    </DataTemplate>
+
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

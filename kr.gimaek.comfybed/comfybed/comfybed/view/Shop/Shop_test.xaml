@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="comfybed.view.Shop.Shop_test">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <ListView x:Name="lvData1"
+                      HasUnevenRows="True"
+                      IsPullToRefreshEnabled="True">
+                <ListView.Header>
+                    <StackLayout BackgroundColor="White">
+                        <StackLayout>
+                            <RelativeLayout>
+                                <Image Source="{Binding Image_Url}"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Start"
+                                            HeightRequest="280"/>
+                            </RelativeLayout>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical"
+                                             Margin="7,7,7,7"
+                                            Padding="10">
+                            <Label Text="{Binding  Shop_Name}"
+                                            TextColor="Black"
+                                            FontSize="30"
+                                            FontAttributes="Bold"
+                                            FontFamily="Batang"  />
+                            <Label Text="{Binding place}"
+                                                TextColor="DarkGray"
+                                                FontSize="Small"
+                                               HorizontalOptions="Start"/>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Start" IsVisible="{Binding GR_isVisible}">
+                                <Image Source="{Binding Grade_Star}"
+                                              HeightRequest="20" />
+                                <!-- <Label Text="{Binding  Grade, StringFormat='{0:F2}'}"
+                                               TextColor="Black" />
+                            <Label Text="{Binding  Review, StringFormat='(리뷰 {0:D} 개)'}"
+                            TextColor="MidnightBlue"  />-->
+                            </StackLayout>
+                            <Frame CornerRadius="10" Margin="7,7,7,7" BackgroundColor="#FE2E64">
+                                <Label Text="선착순 5,000원 즉시 할인! (쿠폰 받기)" FontSize="15"/>
+                            </Frame>
+                            <StackLayout Margin="0,1,0,0"
+                                    BackgroundColor="White"
+                                    Orientation="Vertical"
+                                    Padding="10">
+                                <Label Text="■ 숙소 이벤트1"
+                                HorizontalOptions="Start"
+                                FontSize="Medium"
+                                FontAttributes="Bold"/>
+                                <Label Text="정성 스런 리뷰 작성 시 무료초대권 증정 (자세히 보기)"
+                               HorizontalOptions="Start"
+                                FontSize="Small"
+                           TextColor="Black"/>
+
+                            </StackLayout>
+                            <StackLayout>
+                                <Label Text="최저가보장,예약취소가능" TextColor="Gray" Margin="0,10,10,0" />
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical" BackgroundColor="LightGray">
+                                <StackLayout  BackgroundColor="White" >
+                                    <StackLayout BackgroundColor="White" Padding="5">
+                                        <StackLayout Orientation="Horizontal">
+                                            <StackLayout>
+                                                <Image Source="{Binding room_img}" WidthRequest="200" HeightRequest="150"/>
+                                            </StackLayout>
+                                            <StackLayout  Orientation="Vertical">
+                                                <Label Text="{Binding room_name}"
+                                                TextColor="Black"
+                                   FontSize="Medium" 
+                                   FontAttributes="Bold"/>
+                                                <StackLayout Orientation="Vertical"  HorizontalOptions="EndAndExpand">
+                                                    <Label Text="대실" VerticalOptions="Center"/>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

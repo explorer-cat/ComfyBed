@@ -19,37 +19,51 @@ namespace comfybed.view.Shop
     public partial class Shop_DetailFrm : ContentPage
 
     {
-        List<Shop_Info> dsShop_Info = new List<Shop_Info>();
+
+        List<Room_Info> dsRoom_Info = new List<Room_Info>();
+
         public Shop_DetailFrm()
         {
-
             InitializeComponent();
-
-     }
-
-
-        
-        void OnDateSelected(object sender, DateChangedEventArgs args)
-        {
-            Recalculate();
+            HomeFrm h = new HomeFrm();
+            JArray j = App.DM.Open("select * from Shop_Info left join shop_room on Shop_Info.ssid=shop_room.shop_id where shop_room.shop_id="+ h.getquery()+"; ");
+            dsRoom_Info = JsonConvert.DeserializeObject<List<Room_Info>>(j.ToString());
+            System.Diagnostics.Debug.WriteLine(h.getquery() +  "실제 전송되는 번호 하위");
+            lvData1.ItemsSource = dsRoom_Info;
         }
 
-        void OnSwitchToggled(object sender, ToggledEventArgs args)
-        {
-            Recalculate();
-        }
 
-        void Recalculate()
-        {
-            TimeSpan timeSpan = endDatePicker.Date - startDatePicker.Date + TimeSpan.FromDays(1);
-            if(timeSpan.Days == 1)
+
+            void OnDateSelected(object sender, DateChangedEventArgs args)
             {
-                resultLabel.Text = String.Format("당일치기 여행이시군요!");
-            } else
-            {
-                resultLabel.Text = String.Format("{0}일 여행 예정 맞으신가요?",  timeSpan.Days);
+                Recalculate();
             }
+
+            void OnSwitchToggled(object sender, ToggledEventArgs args)
+            {
+                Recalculate();
+            }
+
+            void Recalculate()
+            {
+                TimeSpan timeSpan = endDatePicker.Date - startDatePicker.Date + TimeSpan.FromDays(1);
+                if (timeSpan.Days == 1)
+                {
+                    resultLabel.Text = String.Format("당일치기 여행이시군요!");
+                }
+                else
+                {
+                    resultLabel.Text = String.Format("{0}일 여행 예정 맞으신가요?", timeSpan.Days);
+                }
+            }
+
+        private void OnButtonClicked(object sender, EventArgs e)
+        {
+            var ShopData = new Shop_Info();
+
+            var nextPage = new ReviewFrm();
+            nextPage.BindingContext = ShopData;
+            Navigation.PushAsync(nextPage);
         }
-        
     }
 }
