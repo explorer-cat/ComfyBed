@@ -1,4 +1,5 @@
-﻿using System;
+﻿using comfybed.view.Shop;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -21,11 +22,11 @@ namespace comfybed.models
 
         /*평점 여부*/
         public bool GR_isVisible { get; set; }  //평점을 공개여부
-        public double Grade { get; set; } //평점
-        public int Review{ get;   set;   } //리
+        public int reviewcount{ get;set; } //리
 
         public bool Event_Check { get; set;  } //이미지에 이벤트 스티커 유무 0false 1true
         public string Sale_Event {  get; set; } //최대할인가격 얼마? EX) 최대 5000원 할인
+
 
 
         public string TodayDate

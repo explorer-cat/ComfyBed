@@ -1,7 +1,9 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using MySql.Data.MySqlClient;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Security.Cryptography.X509Certificates;
@@ -21,7 +23,7 @@ namespace comfybed.common
         }
 
         public JArray Open(string Q)
-        {
+            {
             Uri uri = new Uri(string.Format(baseURL + Q, string.Empty));
             JObject jObject = new JObject();
 

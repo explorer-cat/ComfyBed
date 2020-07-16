@@ -26,41 +26,29 @@ namespace comfybed.views
         {
             InitializeComponent();
             JArray j = App.DM.Open("select * from Shop_Info; ");
+
             dsShop_Info = JsonConvert.DeserializeObject<List<Shop_Info>>(j.ToString());
             lvData.ItemsSource = dsShop_Info;
+    }
+
+
+
+        //        RefreshData();
+
+        /*
+        lvData.RefreshCommand = new Command(() =>
+        {
+            RefreshData();
+            lvData.IsRefreshing = false;
+        });
+    }
+
+
+    public void RefreshData()
+    {
 
     }
-    //        RefreshData();
-
-    /*
-    lvData.RefreshCommand = new Command(() =>
-    {
-        RefreshData();
-        lvData.IsRefreshing = false;
-    });
-}
-
-
-public void RefreshData()
-{
-
-}
-    */
-
-
-
-    //STATIC  or NOT STATIC ? ...
-        static int query = 0;
-
-        public int getquery()
-        {
-            return query;
-        } 
-
-        public void setquery(int q)
-        {
-           query = q;
-        }
+        */
 
 
         public void lvData_ItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -77,6 +65,21 @@ public void RefreshData()
             Navigation.PushAsync(nextPage);
             System.Diagnostics.Debug.WriteLine(getquery() + "  : 번 셀렉트가 선택됨");
         }
-       
+
+
+        static int query = 0;
+
+
+        public int getquery()
+        {
+            return query;
+        }
+
+        public void setquery(int q)
+        {
+            query = q;
+        }
+
+
     }
 }

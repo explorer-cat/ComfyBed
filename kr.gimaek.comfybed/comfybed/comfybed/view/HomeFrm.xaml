@@ -44,7 +44,7 @@
                                         <Label Text="{Binding  Grade, StringFormat='{0:F2} / 5.0'}"
                                                 TextColor="White"
                                                  />
-                                        <Label Text="{Binding  Review, StringFormat='(후기 {0:D} 개)'}"
+                                        <Label Text="{Binding  Review, StringFormat='(리뷰 {0:D} 개)'}"
                                                 TextColor="White"  
                                                />
                                     </StackLayout>

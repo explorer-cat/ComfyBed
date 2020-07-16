@@ -7,6 +7,22 @@
              x:Class="comfybed.view.Shop.ReviewFrm">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
+            <StackLayout BackgroundColor="White" Orientation="Horizontal" HorizontalOptions="Center">
+                <Entry x:Name="comment" Placeholder ="리뷰를 작성해주세요."/>
+                <Button x:Name="test" Text="리뷰 작성" Clicked="test_Clicked"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Button x:Name="star1" Text="☆" Clicked="star1_Clicked" WidthRequest="50"/>
+                <Button x:Name="star2" Text="☆" Clicked="star2_Clicked" WidthRequest="50"/>
+                <Button x:Name="star3" Text="☆" Clicked="star3_Clicked" WidthRequest="50"/>
+                <Button x:Name="star4" Text="☆" Clicked="star4_Clicked" WidthRequest="50"/>
+                <Button x:Name="star5" Text="☆" Clicked="star5_Clicked" WidthRequest="50"/>
+                <Label x:Name="graded" Text="0점" FontSize="Medium"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Label x:Name="avgrade" Text="" TextColor="Black" FontSize="Medium"/>
+                <Label x:Name="starpoint" Text="" TextColor ="YellowGreen" FontSize="Medium"/>
+            </StackLayout>
             <ListView x:Name="lvData1"
                       HasUnevenRows="True"
                       IsPullToRefreshEnabled="True"
@@ -16,21 +32,18 @@
                         <ViewCell>
                             <StackLayout Orientation="Vertical" BackgroundColor="LightGray">
                                 <StackLayout  BackgroundColor="White" >
-                                    <StackLayout BackgroundColor="White">
-                                        <StackLayout Orientation="Horizontal">
-                                            <StackLayout>
-                                                <Label Text ="{Binding User_Name, StringFormat='{0:C0} 님의 리뷰'}"
+                                    <StackLayout Orientation="Vertical" Padding="5">
+                                            <Label Text ="{Binding User_Name, StringFormat='{0:C0} 님의 리뷰'}"
                                                        FontAttributes="Bold"
                                                        FontSize="Medium"
                                                        TextColor="black"/>
-                                                <Label Text="{Binding grade}" TextColor="Red"/>
+                                            <Label Text="{Binding grade}" TextColor="Red"/>
+                                            <StackLayout Orientation="Vertical">
                                                 <Label Text ="{Binding review}" TextColor="black"/>
                                                 <Label Text ="{Binding date}"  TextColor="black"/>
-                                                <Label Text="{Binding grade_avg}" TextColor="Black"/>
                                             </StackLayout>
                                         </StackLayout>
                                     </StackLayout>
-                                </StackLayout>
                             </StackLayout>
 
                         </ViewCell>

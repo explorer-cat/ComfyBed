@@ -33,15 +33,21 @@
                                                 TextColor="DarkGray"
                                                 FontSize="Small"
                                                HorizontalOptions="Start"/>
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="Start" IsVisible="{Binding GR_isVisible}">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
                                 <Image Source="{Binding Grade_Star}"
                                               HeightRequest="20" />
-                               <Label Text="{Binding  Grade, StringFormat='{0:F2}'}"
-                                               TextColor="Black" />
-                                <Button Text="리뷰 50개"
+                                <Label Text="{Binding  Grade, StringFormat='{0:F0}'}"
+                                               TextColor="Black" 
+                                                FontAttributes="Bold"
                                         VerticalOptions="CenterAndExpand"
                                           HorizontalOptions="Center"
-                                         Clicked="OnButtonClicked" 
+                                               x:Name= "avgrade"/>
+                                <Button x:Name="show_review" Text=""
+                                        VerticalOptions="CenterAndExpand"
+                                          HorizontalOptions="Center"
+                                         Clicked="OnButtonClicked"
+                                        FontSize="Medium"
+                                        TextColor="DarkBlue"
                                         BackgroundColor="white"/>
 
                             </StackLayout>

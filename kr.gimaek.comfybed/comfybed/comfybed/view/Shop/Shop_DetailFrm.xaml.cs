@@ -21,18 +21,23 @@ namespace comfybed.view.Shop
     {
 
         List<Room_Info> dsRoom_Info = new List<Room_Info>();
+        List<Review_Info> dsReview_Info = new List<Review_Info>();
 
+        HomeFrm h = new HomeFrm();
+        ReviewFrm r = new ReviewFrm();
         public Shop_DetailFrm()
         {
             InitializeComponent();
-            HomeFrm h = new HomeFrm();
+
             JArray j = App.DM.Open("select * from Shop_Info left join shop_room on Shop_Info.ssid=shop_room.shop_id where shop_room.shop_id="+ h.getquery()+"; ");
             dsRoom_Info = JsonConvert.DeserializeObject<List<Room_Info>>(j.ToString());
-            System.Diagnostics.Debug.WriteLine(h.getquery() +  "실제 전송되는 번호 하위");
+
             lvData1.ItemsSource = dsRoom_Info;
+            show_review.Text = "리뷰 "+ r.getReviewCount() + "개";
+            avgrade.Text = "평점 :" + r.getGradeAvg() + " 점";
         }
 
-
+       
 
             void OnDateSelected(object sender, DateChangedEventArgs args)
             {
@@ -60,9 +65,11 @@ namespace comfybed.view.Shop
         private void OnButtonClicked(object sender, EventArgs e)
         {
             var ShopData = new Shop_Info();
-
+            var ReviewData = new Review_Info();
             var nextPage = new ReviewFrm();
+
             nextPage.BindingContext = ShopData;
+            nextPage.BindingContext = ReviewData;
             Navigation.PushAsync(nextPage);
         }
     }
