@@ -23,7 +23,7 @@ namespace comfybed.models
         public string review { get; set; }
         public string comment { get; set; }
         public string User_Name { get; set; }
-        public string date { get; set; }
+        public DateTime date { get; set; }
         public double grade { get; set; }
 
     }

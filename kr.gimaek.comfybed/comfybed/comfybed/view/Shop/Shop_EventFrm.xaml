@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="comfybed.view.Shop.Shop_Event">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" BackgroundColor="White">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Padding="20">
+                <Label x:Name="graded" Text="숙소 이벤트" FontSize="Medium" FontAttributes="Bold" TextColor="Black"/>
+            </StackLayout>
+            <ListView x:Name="eventData"
+                      HasUnevenRows="True"
+                      BackgroundColor="LightGray"> 
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical" BackgroundColor="LightGray">
+                                <StackLayout  BackgroundColor="White" >
+                                    <StackLayout Orientation="Vertical" Padding="20">
+                                        <Label Text="{Binding Event_id, StringFormat='EVENT {0:0}.'}" TextColor="Green"/>
+                                        <Label Text ="{Binding Title}" TextColor="black" FontAttributes="Bold" FontSize="Medium" Margin="0,7,0,0"/>
+                                        <Label Text ="{Binding Contents}"  TextColor="Gray"  FontSize="Small" Margin="0,7,0,0"/>
+                                        <Frame CornerRadius="20" BackgroundColor="#F1F1F1" Padding="10" Margin="0,10,0,0">
+                                            <StackLayout>
+                                                <Label Text= "진행기간" TextColor="Black"/>
+                                                <Label Text= "{Binding Schedule}"/>
+                                            </StackLayout>
+                                        </Frame>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

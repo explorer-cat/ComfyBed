@@ -9,7 +9,7 @@
         <StackLayout Orientation="Vertical">
             <StackLayout BackgroundColor="White" Orientation="Horizontal" HorizontalOptions="Center">
                 <Entry x:Name="comment" Placeholder ="리뷰를 작성해주세요."/>
-                <Button x:Name="test" Text="리뷰 작성" Clicked="test_Clicked"/>
+                <Button x:Name="test" Text="리뷰 작성" Clicked="Review_Clicked"/>
             </StackLayout>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                 <Button x:Name="star1" Text="☆" Clicked="star1_Clicked" WidthRequest="50"/>
@@ -25,7 +25,6 @@
             </StackLayout>
             <ListView x:Name="lvData1"
                       HasUnevenRows="True"
-                      IsPullToRefreshEnabled="True"
                       BackgroundColor="LightGray">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -40,7 +39,7 @@
                                             <Label Text="{Binding grade}" TextColor="Red"/>
                                             <StackLayout Orientation="Vertical">
                                                 <Label Text ="{Binding review}" TextColor="black"/>
-                                                <Label Text ="{Binding date}"  TextColor="black"/>
+                                                <Label Text ="{Binding date,StringFormat='{0: yyyy-MM-dd}'}"  TextColor="black"/>
                                             </StackLayout>
                                         </StackLayout>
                                     </StackLayout>

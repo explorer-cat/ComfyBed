@@ -36,10 +36,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="view\Shop\Shop_EventFrm.xaml.cs">
+      <DependentUpon>Shop_EventFrm.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Update="view\HomeFrm.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="view\Shop\ReviewFrm.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="view\Shop\Room_DetailFrm.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="view\Shop\Shop_DetailFrm.xaml">

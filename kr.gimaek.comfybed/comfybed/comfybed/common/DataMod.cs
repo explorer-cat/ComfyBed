@@ -22,6 +22,32 @@ namespace comfybed.common
 
         }
 
+
+        public void GetResult(String Q)
+        {
+            string uri = baseURL + Q;
+             string responseText = string.Empty;
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
+            request.Method = "GET";
+            request.Timeout = 30 * 1000; // 30초
+            request.Headers.Add("Authorization", "BASIC SGVsbG8="); // 헤더 추가 방법 
+
+            using (HttpWebResponse resp = (HttpWebResponse)request.GetResponse())
+            {
+                HttpStatusCode status = resp.StatusCode;
+                Console.WriteLine(status);  // 정상이면 "OK"
+
+                Stream respStream = resp.GetResponseStream();
+                using (StreamReader sr = new StreamReader(respStream))
+                {
+                    responseText = sr.ReadToEnd();
+                }
+            }
+            Debug.WriteLine("여기에용" + responseText);
+
+        }
+
         public JArray Open(string Q)
             {
             Uri uri = new Uri(string.Format(baseURL + Q, string.Empty));

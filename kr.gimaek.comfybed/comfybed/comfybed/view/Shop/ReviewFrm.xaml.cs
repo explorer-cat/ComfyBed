@@ -21,7 +21,7 @@ namespace comfybed.view.Shop
     {
 
         List<Review_Info> dsReview_Info = new List<Review_Info>();
-        List<Review_Info> dsReview_Info1 = new List<Review_Info>();
+
         HomeFrm h = new HomeFrm();
 
 
@@ -32,36 +32,30 @@ namespace comfybed.view.Shop
             //json 형식으로 값을 받아와야 하는가?
 
             InitializeComponent();
-            JArray j = App.DM.Open("select * from Shop_Info left join Shop_review on Shop_Info.id=Shop_review.ssid where Shop_review.ssid=" + h.getquery() + ";");
+            JArray j = App.DM.Open("select * from Shop_Info left join Shop_review on Shop_Info.id=Shop_review.ssid where Shop_review.ssid="+h.getquery()+" ORDER BY Shop_review.id DESC; ");
             dsReview_Info = JsonConvert.DeserializeObject<List<Review_Info>>(j.ToString());
 
             lvData1.ItemsSource = dsReview_Info;
 
+            avgrade.Text = String.Format("{0:0.00} 점", getGradeAvg());
 
-
-            double gradesum = dsReview_Info.Sum(item => item.grade);
-            double avg = gradesum / dsReview_Info.Count();
-
-            avgrade.Text = String.Format("{0:0.00} 점",avg);
-
-
-            if(avg > 0 && avg <= 1)
+            if (getGradeAvg() > 0 && getGradeAvg() <= 1)
             {
                 starpoint.Text = String.Format("★☆☆☆☆");
             }
-              else if(avg > 1 && avg < 3 )
+              else if(getGradeAvg() > 1 && getGradeAvg() < 3 )
             {
                 starpoint.Text = String.Format("★★☆☆☆");
             }
-            else if (avg >= 3 && avg < 4 )
+            else if (getGradeAvg() >= 3 && getGradeAvg() < 4 )
             {
                 starpoint.Text = String.Format("★★★☆☆");
             }
-            else if (avg >= 4 && avg < 5 )
+            else if (getGradeAvg() >= 4 && getGradeAvg() < 5 )
             {
                 starpoint.Text = String.Format("★★★★☆");
             }
-            else if (avg >= 5)
+            else if (getGradeAvg() >= 5)
             {
                 starpoint.Text = String.Format("★★★★★");
             }
@@ -78,7 +72,7 @@ namespace comfybed.view.Shop
         }
 
 
-        private void test_Clicked(object sender, EventArgs e)
+        private void Review_Clicked(object sender, EventArgs e)
         {
             string url = $"http://211.105.113.166:50002/api/OpenBED/INSERT INTO Shop_review(ssid, User_Name,date,review,grade) VALUES ('{h.getquery()}', '최성우',  '2020-01-02', '{comment.Text}','{graded.Text}');";//테스트 사이트
             string responseText = string.Empty;
@@ -99,8 +93,14 @@ namespace comfybed.view.Shop
                     responseText = sr.ReadToEnd();
                 }
             }
-            test.Text = responseText;
-            Debug.WriteLine("여기에용" + responseText);
+            DisplayAlert("완료", "리뷰가 등록되었어요", "확인");
+
+            /*리뷰가 등록되는순간 List를 다시 불러와 작성한글과 평균 평점 바로 보여줌*/
+            JArray j = App.DM.Open("select * from Shop_Info left join Shop_review on Shop_Info.id=Shop_review.ssid where Shop_review.ssid=" + h.getquery() + " ORDER BY Shop_review.id DESC; ");
+            dsReview_Info = JsonConvert.DeserializeObject<List<Review_Info>>(j.ToString());
+            lvData1.ItemsSource = dsReview_Info;
+
+            avgrade.Text = String.Format("{0:0.00} 점", getGradeAvg());
 
         }
 
@@ -139,7 +139,7 @@ namespace comfybed.view.Shop
         */
         public int getReviewCount()
         {
-            return dsReview_Info.Count(); ;
+            return dsReview_Info.Count();
         }
 
         public double getGradeAvg()

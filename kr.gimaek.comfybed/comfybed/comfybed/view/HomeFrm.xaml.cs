@@ -20,38 +20,38 @@ namespace comfybed.views
     public partial class HomeFrm : ContentPage
     {
         List<Shop_Info> dsShop_Info = new List<Shop_Info>();
+        List<Shop_Info> newdsShop_Info = new List<Shop_Info>();
 
 
         public HomeFrm()
         {
-            InitializeComponent();
-            JArray j = App.DM.Open("select * from Shop_Info; ");
+            InitializeComponent( );
+            /*홈화면을 불러옴*/
 
+            JArray j = App.DM.Open("select * from Shop_Info; ");
             dsShop_Info = JsonConvert.DeserializeObject<List<Shop_Info>>(j.ToString());
             lvData.ItemsSource = dsShop_Info;
+            /*새로고침*/
+                RefreshData();
+
     }
 
-
-
-        //        RefreshData();
-
-        /*
-        lvData.RefreshCommand = new Command(() =>
-        {
-            RefreshData();
-            lvData.IsRefreshing = false;
-        });
-    }
 
 
     public void RefreshData()
     {
+            JArray j = App.DM.Open("select * from Shop_Info; ");
+            dsShop_Info = JsonConvert.DeserializeObject<List<Shop_Info>>(j.ToString());
+                Debug.WriteLine("뭔가가 업데이트 된거같아요");
+                lvData.RefreshCommand = new Command(() =>
+                {
+                    RefreshData();
+                    lvData.IsRefreshing = false;
+                });
+      }
 
-    }
-        */
 
-
-        public void lvData_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+    public void lvData_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             if (e.SelectedItem == null) return;
             var shop_info1 = e.SelectedItem as Shop_Info;
@@ -61,14 +61,11 @@ namespace comfybed.views
             setquery(shop_info1.ssid);
 
             var nextPage = new Shop_DetailFrm();
-            nextPage.BindingContext = shop_info1;
+            nextPage.BindingContext = e.SelectedItem as Shop_Info;
             Navigation.PushAsync(nextPage);
             System.Diagnostics.Debug.WriteLine(getquery() + "  : 번 셀렉트가 선택됨");
         }
-
-
         static int query = 0;
-
 
         public int getquery()
         {

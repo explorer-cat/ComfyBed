@@ -10,6 +10,7 @@
             <ListView x:Name="lvData1"
                       HasUnevenRows="True"
                       IsPullToRefreshEnabled="True"
+                    ItemSelected="lvData1_ItemSelected"
                       BackgroundColor="LightGray">
                 <ListView.Header>
                     <StackLayout BackgroundColor="White">
@@ -58,15 +59,10 @@
                                     BackgroundColor="White"
                                     Orientation="Vertical"
                                     Padding="10">
-                                <Label Text="■ 숙소 이벤트1"
-                                HorizontalOptions="Start"
+                                <Button Text="■ 숙소 특별 이벤트" VerticalOptions="FillAndExpand"
+                                HorizontalOptions="CenterAndExpand"
                                 FontSize="Medium"
-                                FontAttributes="Bold"/>
-                                <Label Text="정성 스런 리뷰 작성 시 무료초대권 증정 (자세히 보기)"
-                               HorizontalOptions="Start"
-                                FontSize="Small"
-                           TextColor="Black"/>
-
+                                FontAttributes="Bold" Clicked="ShopEvent_Clicked" BackgroundColor="White"/>
                             </StackLayout>
                             <StackLayout>
                                 <Label Text="최저가보장,예약취소가능" TextColor="Gray" Margin="0,10,10,0" />
@@ -96,7 +92,7 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Vertical" BackgroundColor="LightGray">
-                                <StackLayout  BackgroundColor="White" >
+                                <StackLayout  BackgroundColor="White" Padding="10">
                                     <StackLayout BackgroundColor="White">
                                         <StackLayout Orientation="Horizontal">
                                             <StackLayout>
@@ -113,14 +109,14 @@
                                                         <Label Text="예약"
                                                                 BackgroundColor="Red"
                                                                 TextColor="White"/>
-                                                        <Label Text="30,000원" TextColor="Black"/>
+                                                        <Label Text="{Binding rent_price}" TextColor="Black"/>
                                                     </StackLayout>
                                                     <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
                                                         <Label Text="숙박"/>
                                                         <Label Text="예약"
                                                                 BackgroundColor="Red"
                                                                 TextColor="White"/>
-                                                        <Label Text="30,000원" TextColor="Black"/>
+                                                        <Label Text="{Binding sleep_price}" TextColor="Black"/>
                                                     </StackLayout>
                                                 </StackLayout>
                                             </StackLayout>
@@ -131,7 +127,7 @@
                                                                 Margin="10,10,10,10"
                                                                 VerticalOptions="Start" 
                                                                 BackgroundColor="Bisque">
-                                            <Label Text="대실:1 4시간 이용  숙박입실 14시부터~18시까지 가능/ 에어컨 TV 완비되어 있습니다."/>
+                                            <Label Text="{Binding room_info}"/>
                                         </StackLayout>
                                     </StackLayout>
                                 </StackLayout>
