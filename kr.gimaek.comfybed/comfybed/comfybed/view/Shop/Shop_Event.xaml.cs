@@ -17,12 +17,11 @@ namespace comfybed.view.Shop
     public partial class Shop_Event : ContentPage
     {
         List<ShopEvent_Info> dsShopEvent_Info= new List<ShopEvent_Info>();
-        HomeFrm h = new HomeFrm();
-        public Shop_Event()
+        public Shop_Event(Shop_Info info)
         {
             InitializeComponent();
 
-            JArray j = App.DM.Open("select * from Shop_Info left join Shop_Event on Shop_Info.id=Shop_Event.ssid where Shop_Event.ssid="+h.getquery()+";");
+            JArray j = App.DM.Open("select * from Shop_Info left join Shop_Event on Shop_Info.id=Shop_Event.ssid where Shop_Event.ssid="+info.ssid+";");
             dsShopEvent_Info = JsonConvert.DeserializeObject<List<ShopEvent_Info>>(j.ToString());
             eventData.ItemsSource = dsShopEvent_Info;
         }

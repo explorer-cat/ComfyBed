@@ -23,7 +23,8 @@
                                             HorizontalOptions="Center"
                                             VerticalOptions="Start"
                                             HeightRequest="250"/>
-                                        <Label IsVisible="{Binding Event_Check}"  Text="{Binding Sale_Event}" BackgroundColor="Red" TextColor="White"/>
+                                        
+                                        <Label  IsVisible="{Binding Event_Check}"  Text="{Binding Sale_Event}" BackgroundColor="Red" TextColor="White"/>
                                     </RelativeLayout>
                                 </StackLayout>
                                 <StackLayout Orientation="Vertical"

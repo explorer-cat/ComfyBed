@@ -6,17 +6,27 @@
              mc:Ignorable="d"
              x:Class="comfybed.view.Shop.Room_DetailFrm">
     <ContentPage.Content>
-        <StackLayout BackgroundColor="#F2F2F2"
+        <ScrollView>
+            <StackLayout BackgroundColor="#F2F2F2"
                             Padding="10"
                             Orientation="Vertical">
                 <Image Source="{Binding room_img}" HorizontalOptions="StartAndExpand"/>
-            <StackLayout Orientation="Vertical" BackgroundColor="White" Padding="10" >
-                <StackLayout Orientation="Horizontal">
-                    <StackLayout Padding="5">
-                        <Label Text="대실11" 
+                <StackLayout Orientation="Vertical" BackgroundColor="White" Padding="10" >
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout Padding="5">
+                            <Label Text="대실" 
                            TextColor="Black" 
                            FontSize="Medium"/>
-                    </StackLayout>
+                            <StackLayout Orientation="Horizontal" 
+                                        HorizontalOptions="Center">
+                                <DatePicker x:Name="rentDatePicker"
+                                           Format="M"
+                                           DateSelected="rentDatePicker_DateSelected"
+                                            MinimumDate ="{Binding MinimumDate}"/>
+                                <Label Text="   -  " Margin="0,15,0,0"/>
+                                <Button  x:Name ="rent_reserved" Text="예약" Clicked="reserved_Clicked_1"/>
+                            </StackLayout>
+                        </StackLayout>
                     <StackLayout Padding="5" HorizontalOptions="EndAndExpand">
                         <Label Text="{Binding rent_price}" 
                            FontAttributes = "Bold" 
@@ -28,7 +38,10 @@
                        Padding="10" 
                        VerticalOptions="Center"
                        BackgroundColor="#F2F2F2">
-                    <Label Text="{Binding detail_rent_info}" TextColor="#0B2161"/>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                        <Label Text="{Binding rent_limit, StringFormat='마감시간 {0:0} 시까지'}" TextColor="Black"/>
+                        <Label Text="{Binding rent_time, StringFormat='이용시간 {0:0} 시간'}" TextColor="Black"/>
+                    </StackLayout>
                 </Frame>
             </StackLayout>
             <StackLayout Orientation="Vertical" BackgroundColor="White" Padding="10" >
@@ -37,7 +50,22 @@
                         <Label Text="숙박" 
                            TextColor="Black" 
                            FontSize="Medium"/>
-                    </StackLayout>
+                            <StackLayout Orientation="Horizontal" 
+                                        HorizontalOptions="Center">
+
+                                <DatePicker x:Name="startDatePicker"
+                                           Format="M"
+                                           DateSelected="startDatePicker_DateSelected"
+                                           MinimumDate ="{Binding MinimumDate}"/>
+                                <Label Text="   -  " Margin="0,15,0,0"/>
+                                <DatePicker x:Name="endDatePicker"
+                                            Format="M"
+                                            DateSelected="endDatePicker_DateSelected"          
+                                            MinimumDate ="{Binding MinimumDate}"/>
+                                <Button  x:Name ="sleep_reserved" Text="예약" Clicked="reserved_Clicked"/>
+
+                            </StackLayout>
+                        </StackLayout>
                     <StackLayout Padding="5" HorizontalOptions="EndAndExpand">
                         <Label Text="{Binding sleep_price}" 
                            FontAttributes = "Bold" 
@@ -49,9 +77,20 @@
                        Padding="10" 
                        VerticalOptions="Center"
                        BackgroundColor="#F2F2F2">
-                    <Label Text="{Binding detail_sleep_info}" TextColor="#0B2161"/>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                        <Label Text="{Binding sleep_checkin, StringFormat='입실시간 {0:0}시 부터'}" TextColor="#0B2161"/>
+                        <Label Text="{Binding sleep_checkout,StringFormat='퇴실시간 익일 {0:0}시'}" TextColor="Black"/>
+                    </StackLayout>
                 </Frame>
             </StackLayout>
+                <StackLayout Orientation="Vertical" VerticalOptions="Start">
+                    <Button Text="요금 정보"/>
+                    <StackLayout>
+                        <Label Text="선택 날짜"/>
+                        <Label Text="7월 18일 토요일 ~ 07월 19일 일요일 1박"/>
+                    </StackLayout>
+                </StackLayout>
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

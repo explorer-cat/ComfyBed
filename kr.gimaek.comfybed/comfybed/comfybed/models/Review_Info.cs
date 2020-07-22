@@ -16,7 +16,7 @@ using Xamarin.Forms;
 namespace comfybed.models
 {
 
-    class Review_Info
+    public class Review_Info
     {
         public int id { get; set; }
         public int ssid { get; set; }
@@ -25,6 +25,7 @@ namespace comfybed.models
         public string User_Name { get; set; }
         public DateTime date { get; set; }
         public double grade { get; set; }
+
 
     }
 }

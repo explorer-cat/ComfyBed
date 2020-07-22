@@ -19,36 +19,45 @@ namespace comfybed.view.Shop
     public partial class Shop_DetailFrm : ContentPage
 
     {
+        List<Reserve_Info> reserve_room = new List<Reserve_Info>();
         List<Room_Info> dsRoom_Info = new List<Room_Info>();
         List<Review_Info> dsReview_Info = new List<Review_Info>();
+        public Shop_Info shopinfo;
+        public ReviewFrm reviewfrm;
+        public ShopEvent_Info eventinfo;
 
-        ReviewFrm r = new ReviewFrm();
-        HomeFrm h = new HomeFrm();
 
-        public Shop_DetailFrm()
+
+        public Shop_DetailFrm(Shop_Info shop, ReviewFrm info)
         {
+
+            shopinfo = shop;
+            reviewfrm = info;
+
+
             InitializeComponent();
-            JArray j = App.DM.Open("select * from Shop_Info left join shop_room on Shop_Info.ssid=shop_room.shop_id where shop_room.shop_id=" + h.getquery() + "; ");
+            JArray j = App.DM.Open("select * from Shop_Info left join shop_room on Shop_Info.ssid=shop_room.shop_id where shop_room.shop_id=" + shop.id + "; ");
             dsRoom_Info = JsonConvert.DeserializeObject<List<Room_Info>>(j.ToString());
 
             lvData1.ItemsSource = dsRoom_Info;
 
-            show_review.Text = "리뷰 "+ r.getReviewCount() + "개";
-            avgrade.Text = String.Format("평점 : {0:0.00} 점", r.getGradeAvg());
+            //show_review.Text = "리뷰 "+ info.getReviewCount() + "개";
+           //avgrade.Text = String.Format("평점 : {0:0.00} 점", info.getGradeAvg());
             
-            RefreshData();
+            RefreshData(shop);
         }
 
-        public void RefreshData()
+        public void RefreshData(Shop_Info shop)
         {
-            JArray j = App.DM.Open("select * from Shop_Info left join shop_room on Shop_Info.ssid=shop_room.shop_id where shop_room.shop_id=" + h.getquery() + "; ");
+            JArray j = App.DM.Open("select * from Shop_Info left join shop_room on Shop_Info.ssid=shop_room.shop_id where shop_room.shop_id=" + shop.id + "; ");
             dsRoom_Info = JsonConvert.DeserializeObject<List<Room_Info>>(j.ToString());
             lvData1.ItemsSource = dsRoom_Info;
+           
 
             Debug.WriteLine("뭔가가 업데이트 된거같아요");
                 lvData1.RefreshCommand = new Command(() =>
                 {
-                    RefreshData();
+                    RefreshData(shop);
                     lvData1.IsRefreshing = false;
                 });
         }
@@ -57,7 +66,7 @@ namespace comfybed.view.Shop
         void OnDateSelected(object sender, DateChangedEventArgs args)
             {
                 Recalculate();
-            }
+        }
 
             void OnSwitchToggled(object sender, ToggledEventArgs args)
             {
@@ -66,8 +75,19 @@ namespace comfybed.view.Shop
 
             void Recalculate()
             {
-                TimeSpan timeSpan = endDatePicker.Date - startDatePicker.Date + TimeSpan.FromDays(1);
-                if (timeSpan.Days == 1)
+            var startTime = startDatePicker.Date.ToString("yyyy-MM-dd");
+            var endTime = endDatePicker.Date.ToString("yyyy-MM-dd");
+
+
+            TimeSpan timeSpan = endDatePicker.Date - startDatePicker.Date + TimeSpan.FromDays(1);
+            Debug.WriteLine(startTime + " 시작날짜");
+            Debug.WriteLine(endTime + "종료날짜");
+
+            JArray j = App.DM.Open("select * from reserve_user left join shop_room on reserve_user.shop_id = shop_room.room_id where shop_room.shop_id = 1 and checkin_day between "+startTime+" and "+endTime+"; ");
+            dsRoom_Info = JsonConvert.DeserializeObject<List<Room_Info>>(j.ToString());
+            lvData1.ItemsSource = dsRoom_Info;
+
+            if (timeSpan.Days == 1)
                 {
                     resultLabel.Text = String.Format("당일치기 여행이시군요!");
                 }
@@ -81,43 +101,24 @@ namespace comfybed.view.Shop
         {
             var ShopData = new Shop_Info();
             var ReviewData = new Review_Info();
-            var nextPage = new ReviewFrm();
 
-            nextPage.BindingContext = ShopData;
-            nextPage.BindingContext = ReviewData;
-            Navigation.PushAsync(nextPage);
         }
 
 
         private void ShopEvent_Clicked(object sender, EventArgs e)
         {
-            var nextPage = new Shop_Event();
+            var nextPage = new Shop_Event(shopinfo);
+            // nextPage.BindingContext = e.SelectedItem as Room_Info;
             Navigation.PushAsync(nextPage);
         }
 
         private void lvData1_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             if (e.SelectedItem == null) return;
-            var room_info = e.SelectedItem as Room_Info;
 
-           setquery(room_info.ssid);
-
-            var nextPage = new Room_DetailFrm();
-            nextPage.BindingContext = e.SelectedItem as Room_Info;
+            var nextPage = new Room_DetailFrm(e.SelectedItem as Room_Info);
+           // nextPage.BindingContext = e.SelectedItem as Room_Info;
             Navigation.PushAsync(nextPage);
-           System.Diagnostics.Debug.WriteLine(getquery() + "  : 번 셀렉트가 선택됨");
-        }
-
-        static int query = 0;
-
-        public int getquery()
-        {
-            return query;
-        }
-
-        public void setquery(int q)
-        {
-            query = q;
         }
     }
 }

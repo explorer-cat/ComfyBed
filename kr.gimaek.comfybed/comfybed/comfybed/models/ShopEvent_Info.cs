@@ -4,7 +4,7 @@ using System.Text;
 
 namespace comfybed.models
 {
-    class ShopEvent_Info
+    public class ShopEvent_Info
     {
         public int id { get; set; }
         public int ssid { get; set; }

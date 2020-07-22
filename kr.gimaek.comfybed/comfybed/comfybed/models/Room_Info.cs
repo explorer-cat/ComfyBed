@@ -4,7 +4,7 @@ using System.Text;
 
 namespace comfybed.models
 {
-    class Room_Info
+    public class Room_Info
     {
         public string room_img { get; set; }
         public string room_name { get; set; }
@@ -23,5 +23,13 @@ namespace comfybed.models
         public int rent_time { get; set; }
         public int sleep_checkin { get; set; }
         public int sleep_checkout { get; set; }
+
+        public DateTime MinimumDate
+        {
+            get
+            {
+                return DateTime.Now;
+            }
+        }
     }
 }

@@ -36,8 +36,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="view\Shop\Shop_EventFrm.xaml.cs">
-      <DependentUpon>Shop_EventFrm.xaml</DependentUpon>
+    <Compile Update="view\Shop\Shop_Event.xaml.cs">
+      <DependentUpon>Shop_Event.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
