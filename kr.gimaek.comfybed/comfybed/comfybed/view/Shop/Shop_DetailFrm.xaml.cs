@@ -22,17 +22,17 @@ namespace comfybed.view.Shop
         List<Reserve_Info> reserve_room = new List<Reserve_Info>();
         List<Room_Info> dsRoom_Info = new List<Room_Info>();
         List<Review_Info> dsReview_Info = new List<Review_Info>();
+        public Review_Info reviewinfo;
         public Shop_Info shopinfo;
-        public ReviewFrm reviewfrm;
         public ShopEvent_Info eventinfo;
 
 
 
-        public Shop_DetailFrm(Shop_Info shop, ReviewFrm info)
+        public Shop_DetailFrm(Shop_Info shop, Review_Info info)
         {
 
             shopinfo = shop;
-            reviewfrm = info;
+            reviewinfo = info;
 
 
             InitializeComponent();
@@ -41,10 +41,27 @@ namespace comfybed.view.Shop
 
             lvData1.ItemsSource = dsRoom_Info;
 
-            //show_review.Text = "리뷰 "+ info.getReviewCount() + "개";
-           //avgrade.Text = String.Format("평점 : {0:0.00} 점", info.getGradeAvg());
+            show_review.Text = "리뷰 "+ getReviewCount() + "개";
+            avgrade.Text = String.Format("평점 : {0:0.00} 점", getGradeAvg());
             
             RefreshData(shop);
+        }
+
+
+        public int getReviewCount()
+        {
+            JArray j = App.DM.Open("select * from Shop_Info left join Shop_review on Shop_Info.id=Shop_review.ssid where Shop_review.ssid=" + shopinfo.ssid + " ORDER BY Shop_review.id DESC; ");
+            dsReview_Info = JsonConvert.DeserializeObject<List<Review_Info>>(j.ToString());
+
+            return dsReview_Info.Count();
+        }
+
+        public double getGradeAvg()
+        {
+            double gradesum = dsReview_Info.Sum(item => item.grade);
+            double avg = gradesum / dsReview_Info.Count();
+            return avg;
+
         }
 
         public void RefreshData(Shop_Info shop)
@@ -99,8 +116,9 @@ namespace comfybed.view.Shop
 
         private void OnButtonClicked(object sender, EventArgs e)
         {
-            var ShopData = new Shop_Info();
-            var ReviewData = new Review_Info();
+            var nextPage = new ReviewFrm(shopinfo);
+            // nextPage.BindingContext = e.SelectedItem as Room_Info;
+            Navigation.PushAsync(nextPage);
 
         }
 

@@ -55,22 +55,19 @@ namespace comfybed.view.Shop
          //   Recalculate();
             var startdate = startDatePicker.Date.ToString("yyyy-MM-dd");
             Debug.WriteLine(startdate);
-          // Debug.WriteLine(startDatePicker.Date.ToString("yyyy-MM-dd"));
-          // JArray j = App.DM.Open("select * from reserve_user WHERE shop_id = 1 and room_id = 1 and checkin_day = '2020-07-21';");
-          // dsResrve_Info = JsonConvert.DeserializeObject<List<Reserve_Info>>(j.ToString());
-          // Debug.WriteLine(dsResrve_Info);
         }
 
 
         private void reserved_Clicked_1(object sender, EventArgs e)
         {
+            string NowTime = DateTime.Now.ToString("yyyy-MM-dd");
 
             DataMod mod = new DataMod();
             try
             {
-            //DisplayAlert("dd", ""+d.getRoomName()+"d", "dd");
-            mod.GetResult("INSERT INTO reserve_user(shop_id,reserve_check,room_id,room_name,user_name,price,checkin_day,checkout_day) VALUES ('" + roominfo.ssid+"', '예약 완료', '"+ roominfo.room_id+ "',  '" + roominfo.room_name+ "','최성우' , '"+ roominfo.rent_price+"원', '" + rentDatePicker.Date.ToString("yyyy-MM-dd")+"','"+rentDatePicker.Date.ToString("yyyy-MM-dd")+"');");
-              mod.GetResult("INSERT INTO fuck(fuck) VALUES (1);");
+                //DisplayAlert("dd", ""+d.getRoomName()+"d", "dd");
+                mod.GetResult("INSERT INTO reserve_user(shop_id,reserve_check,room_id,reserve_date,room_name,user_name,price,checkin_day,checkout_day) VALUES ('" + roominfo.ssid + "', '신규 예약', '" + roominfo.room_id + "','" + NowTime + "',  '" + roominfo.room_name + "', '최성우' , '" + roominfo.rent_price + "원', '" + rentDatePicker.Date.ToString("yyyy-MM-dd") + "','" + rentDatePicker.Date.ToString("yyyy-MM-dd") + "');");
+                mod.GetResult("INSERT INTO Shop_reserve (shop_id,room_id,reserve,message) VALUES (" + roominfo.ssid+", " + roominfo.room_id + ",1, 1);");
                 DisplayAlert("성공", "정상적으로 예약되었습니다.", "확인");
             }
             catch(Exception error)
@@ -87,6 +84,7 @@ namespace comfybed.view.Shop
             try
             {
                 mod.GetResult("INSERT INTO reserve_user(shop_id,room_id,room_name,checkin_day,checkout_day) VALUES ('"+ roominfo.ssid+"', '" + roominfo.room_id + "', '"+roominfo.room_name+"' , '" + startDatePicker.Date.ToString("yyyy-MM-dd") + "','" + endDatePicker.Date.ToString("yyyy-MM-dd") + "');");
+                mod.GetResult("INSERT INTO Shop_reserve (shop_id,shop_room,reserve,message) VALUES ('" + roominfo.ssid + "', '" + roominfo.room_id + ", reserve = 1,  message = 1);");
                 DisplayAlert("성공", "정상적으로 예약되었습니다.", "확인");
                 }
               catch(Exception error)

@@ -22,16 +22,18 @@ namespace comfybed.view.Shop
 
         List<Review_Info> dsReview_Info = new List<Review_Info>();
 
-        public ReviewFrm(Review_Info info)
+        public Shop_Info shopinfo;
+        public ReviewFrm(Shop_Info info)
         {
-
+            shopinfo = info;
             //mysql 을 연결해서 seletct 해준후 result값만 받아오는 함수를 만들어서 뿌릴수있다면?
             //json 형식으로 값을 받아와야 하는가?
 
-            JArray j = App.DM.Open("select * from Shop_Info left join Shop_review on Shop_Info.id=Shop_review.ssid where Shop_review.ssid="+info.ssid+" ORDER BY Shop_review.id DESC; ");
+            JArray j = App.DM.Open("select * from Shop_Info left join Shop_review on Shop_Info.id=Shop_review.ssid where Shop_review.ssid="+ info.ssid+" ORDER BY Shop_review.id DESC; ");
             dsReview_Info = JsonConvert.DeserializeObject<List<Review_Info>>(j.ToString());
 
             InitializeComponent();
+          // DisplayAlert("dd", "" + info.ssid, "dd");
 
             lvData1.ItemsSource = dsReview_Info;
 
@@ -72,8 +74,8 @@ namespace comfybed.view.Shop
 
         private void Review_Clicked(object sender, EventArgs e)
         {
-            Review_Info info = new Review_Info();
-            string url = $"http://211.105.113.166:50002/api/OpenBED/INSERT INTO Shop_review(ssid, User_Name,date,review,grade) VALUES ('{info.ssid}', '최성우',  '2020-01-02', '{comment.Text}','{graded.Text}');";//테스트 사이트
+
+            string url = $"http://211.105.113.166:50002/api/OpenBED/INSERT INTO Shop_review(ssid, User_Name,date,review,grade) VALUES ('{shopinfo.ssid}', '최성우',  '2020-01-02', '{comment.Text}','{graded.Text}');";//테스트 사이트
             string responseText = string.Empty;
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
@@ -95,7 +97,7 @@ namespace comfybed.view.Shop
             DisplayAlert("완료", "리뷰가 등록되었어요", "확인");
 
             /*리뷰가 등록되는순간 List를 다시 불러와 작성한글과 평균 평점 바로 보여줌*/
-            JArray j = App.DM.Open("select * from Shop_Info left join Shop_review on Shop_Info.id=Shop_review.ssid where Shop_review.ssid=" + info.ssid+ " ORDER BY Shop_review.id DESC; ");
+            JArray j = App.DM.Open("select * from Shop_Info left join Shop_review on Shop_Info.id=Shop_review.ssid where Shop_review.ssid=" + shopinfo.ssid+ " ORDER BY Shop_review.id DESC; ");
             dsReview_Info = JsonConvert.DeserializeObject<List<Review_Info>>(j.ToString());
             lvData1.ItemsSource = dsReview_Info;
 

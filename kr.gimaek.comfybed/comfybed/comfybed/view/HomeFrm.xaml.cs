@@ -60,7 +60,7 @@ namespace comfybed.views
         {
             if (e.SelectedItem == null) return;
 
-            var nextPage = new Shop_DetailFrm(e.SelectedItem as Shop_Info, e.SelectedItem as ReviewFrm);
+            var nextPage = new Shop_DetailFrm(e.SelectedItem as Shop_Info, e.SelectedItem as Review_Info);
 
             nextPage.BindingContext = e.SelectedItem as Shop_Info;
 
