@@ -18,6 +18,6 @@ Xamarin .Net OpenSource PlatForm
 ## 정보
 
 최성우  
-Email : dante@heaventree.co.kr
+Email : sqlstyle@kakao.com
 Instargram : @sew_gg
 
